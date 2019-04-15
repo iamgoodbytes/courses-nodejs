@@ -1,0 +1,26 @@
+{
+  "name": "nodejsdemo",
+  "version": "1.0.0",
+  "description": "Code voor de Node.JS cursus op https://courses.goodbytes.be",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamgoodbytes/courses-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamgoodbytes/courses-nodejs/issues"
+  },
+  "homepage": "https://github.com/iamgoodbytes/courses-nodejs#readme",
+  "dependencies": {
+    "cowsay": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
