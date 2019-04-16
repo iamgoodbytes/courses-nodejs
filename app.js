@@ -7,6 +7,7 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiTodosRouter = require('./routes/api/v1/todos');
+const passport = require('./passport/passport');
 
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
@@ -31,7 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/v1/todos', apiTodosRouter);
+app.use('/api/v1/todos', passport.authenticate('jwt', {
+  session: false
+}), apiTodosRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
