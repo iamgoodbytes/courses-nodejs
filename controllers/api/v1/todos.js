@@ -1,11 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const todoSchema = new Schema({
-    text: String,
-    user: String,
-    completed: Boolean
-})
-const Todo = mongoose.model('Todo', todoSchema);
+const Todo = require('../../../models/Todo');
 
 const getAll = (req, res) => {
     Todo.find({
@@ -20,16 +13,22 @@ const getAll = (req, res) => {
             });
         }
     });
-
-
 }
 
-const create = (req, res) => {
+const create = (req, res, next) => {
+
     let todo = new Todo();
-    todo.text = "My first todo";
-    todo.user = "Joris";
-    todo.completed = false;
+    todo.text = req.body.text;
+    todo.user = req.body.user;
+    todo.completed = req.body.completed;
     todo.save((err, doc) => {
+        if (err) {
+            res.json({
+                "status": "error",
+                "message": "Could not save this todo item"
+            });
+        }
+
         if (!err) {
             res.json({
                 "status": "success",
