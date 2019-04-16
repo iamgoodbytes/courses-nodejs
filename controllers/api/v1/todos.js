@@ -65,6 +65,23 @@ const update = (req, res) => {
     })
 }
 
+const remove = (req, res) => {
+    let user = req.user._id;
+    let todoId = req.params.id;
+    Todo.findOneAndDelete({
+        user: user,
+        _id: todoId
+    }).then(result => {
+        res.json({
+            "status": "success",
+            "message": "It's gone!"
+        })
+    }).catch(err => {
+        res.json(err);
+    })
+}
+
 module.exports.getAll = getAll;
 module.exports.create = create;
 module.exports.update = update;
+module.exports.remove = remove;
