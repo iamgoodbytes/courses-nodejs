@@ -12,7 +12,7 @@ const config = require('config');
 
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
-mongoose.connect(config.get('Database.conn'), {
+mongoose.connect(process.env.dbconn || config.get('Database.conn'), {
   useNewUrlParser: true
 });
 
