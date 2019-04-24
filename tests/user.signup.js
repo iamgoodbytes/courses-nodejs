@@ -28,7 +28,6 @@ test.serial('User signup', async t => {
             "username": "GoodBytes",
             "password": "this is not safe"
         });
-
     t.is(response.status, 200);
     t.is(response.body.status, "success");
 });
