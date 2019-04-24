@@ -3,7 +3,7 @@ import request from 'supertest'
 import MongodbMemoryServer from 'mongodb-memory-server'
 
 test.before(async (t) => {
-    // This runs before all tests
+
     const mongod = new MongodbMemoryServer({
         instance: {
             port: 37001,
