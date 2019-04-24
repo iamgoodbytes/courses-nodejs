@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/iamgoodbytes/courses-nodejs.svg?branch=master)](https://travis-ci.org/iamgoodbytes/courses-nodejs)  
+
 # 🔥 GoodBytes nodejs video cursus
 
 Deze repository bevat de code voor de Node.JS video-cursus op https://courses.goodbytes.be  
