@@ -11,7 +11,7 @@ const signup = async (req, res, next) => {
     });
     await user.setPassword(password);
     await user.save().then(result => {
-        console.log(result);
+        //console.log(result);
 
         let token = jwt.sign({
             uid: result._id,
