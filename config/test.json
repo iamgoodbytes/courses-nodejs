@@ -1,6 +1,6 @@
 {
     "Database": {
-        "conn": "mongodb://127.0.0.1:49326/todoAvaTest"
+        "conn": "mongodb://127.0.0.1:37001/todoTEST"
     },
     "jwt": {
         "secret": "MyVerySecretWord"
