@@ -1,7 +1,10 @@
 import express from "express";
+import log from "./middleware/logger.mjs";
 
 const app = express();
 const port = 3000;
+
+//app.use(log);
 
 app.get("/api/v1/todos", (req, res) => {
     res.send("GET todos");
