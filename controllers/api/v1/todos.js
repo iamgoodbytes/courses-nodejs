@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-const Todo = mongoose.model('Todo', { user: String, title: String, completed: Boolean })
+import { request } from 'express'
+import Todo from '../../../models/api/v1/Todo.js'
 
 export const list = async (req, res, next) => {
   let docs = await Todo.find({})
@@ -14,14 +14,26 @@ export const list = async (req, res, next) => {
 }
 
 export const create = async (req, res, next) => {
-  const todo = new Todo({ title: 'Learn nodejs', user: 'goodbytes', completed: false })
-  let doc = await todo.save()
+  const todo = new Todo({
+    title: req.body.title,
+    user: req.body.user,
+    completed: req.body.status,
+  })
 
-  let result = {
-    status: 'success',
-    data: doc,
+  try {
+    let doc = await todo.save()
+    let result = {
+      status: 'success',
+      data: doc,
+    }
+    res.status(201).json(result)
+  } catch (err) {
+    let result = {
+      status: 'error',
+      message: err.message,
+    }
+    res.status(400).json(result)
   }
-  res.json(result)
 }
 
 export const remove = (req, res, next) => {
