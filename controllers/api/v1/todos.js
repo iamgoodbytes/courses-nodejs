@@ -1,17 +1,25 @@
-export const list = (req, res, next) => {
+import mongoose from 'mongoose'
+const Todo = mongoose.model('Todo', { user: String, title: String, completed: Boolean })
+
+export const list = async (req, res, next) => {
+  let docs = await Todo.find({})
+
   let result = {
     status: 'success',
     data: {
-      todos: [],
+      todos: docs,
     },
   }
   res.json(result)
 }
 
-export const create = (req, res, next) => {
+export const create = async (req, res, next) => {
+  const todo = new Todo({ title: 'Learn nodejs', user: 'goodbytes', completed: false })
+  let doc = await todo.save()
+
   let result = {
     status: 'success',
-    data: {},
+    data: doc,
   }
   res.json(result)
 }

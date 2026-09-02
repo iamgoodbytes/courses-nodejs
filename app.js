@@ -8,6 +8,7 @@ import 'dotenv/config'
 import createError from 'http-errors'
 import errorHandler from './middlewares/error-handler.js'
 import routes from './config/routes.js'
+import mongoose from 'mongoose'
 
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -22,6 +23,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
+
+// connect to mongodb
+mongoose.connect('mongodb://127.0.0.1:27017/todos')
 
 // routes
 app.use(routes)
