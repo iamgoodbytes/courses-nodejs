@@ -1,7 +1,14 @@
 import jwt from 'jsonwebtoken'
 
 const authenticate = (req, res, next) => {
-  let token = req.headers.authorization
+  let token = req.headers.authorization || null
+  if (!token) {
+    res.status(401).json({
+      status: 'error',
+      message: 'invalid token',
+    })
+    return
+  }
   token = token.split(' ')[1]
 
   try {

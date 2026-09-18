@@ -17,10 +17,17 @@ export const login = async (req, res, next) => {
   } else {
     // user DOES exist
     let result = await bcrypt.compare(password, userExist.hash)
-    let token = jwt.sign({ email: email, uid: userExist._id }, 'shhhhh')
-    res.send({
-      status: 'success',
-      token: token,
-    })
+    if (result) {
+      let token = jwt.sign({ email: email, uid: userExist._id }, 'shhhhh')
+      res.send({
+        status: 'success',
+        token: token,
+      })
+    } else {
+      res.json({
+        status: 'error',
+        message: 'Cannot login',
+      })
+    }
   }
 }
