@@ -25,7 +25,7 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // connect to mongodb
-mongoose.connect('mongodb://127.0.0.1:27017/todos')
+mongoose.connect(process.env.DB)
 
 // routes
 app.use(routes)

@@ -18,7 +18,7 @@ export const login = async (req, res, next) => {
     // user DOES exist
     let result = await bcrypt.compare(password, userExist.hash)
     if (result) {
-      let token = jwt.sign({ email: email, uid: userExist._id }, 'shhhhh')
+      let token = jwt.sign({ email: email, uid: userExist._id }, process.env.JWTSECRET)
       res.send({
         status: 'success',
         token: token,

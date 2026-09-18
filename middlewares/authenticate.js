@@ -12,7 +12,7 @@ const authenticate = (req, res, next) => {
   token = token.split(' ')[1]
 
   try {
-    let decoded = jwt.verify(token, 'shhhhh')
+    let decoded = jwt.verify(token, process.env.JWTSECRET)
     req.user = decoded
     next()
   } catch (err) {
